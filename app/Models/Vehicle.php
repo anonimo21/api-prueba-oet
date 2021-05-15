@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory;
-    protected $fillable = ['color', 'marca', 'type_id', 'driver_id', 'owner_id'];
+    protected $fillable = ['placa', 'color', 'marca', 'type_id', 'driver_id', 'owner_id'];
 
     //relacion uno a muchos inversa
     public function owner()

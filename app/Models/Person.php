@@ -10,6 +10,7 @@ class Person extends Model
     use HasFactory;
     protected $table = 'persons';
     protected $fillable = ['cedula', 'primer_nombre', 'segundo_nombre', 'apellidos', 'direccion', 'telefono', 'ciudad'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     //relacion uno a uno
     public function driver()

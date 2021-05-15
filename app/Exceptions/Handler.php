@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +40,32 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof NotFoundHttpException) {
+            //return $this->errorResponse("Página no encontrada", $code = 404, $msj = 'Página no encontrada');
+            return response()->json([
+                'msg' => 'Página no encontrada',
+                'status' => false,
+            ], 404);
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            //return $this->errorResponse("Recurso no encontrado", $code = 404, $msj = 'Recurso no encontrado');
+            return response()->json([
+                'msg' => 'Recurso no encontrado',
+                'status' => false,
+            ], 404);
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return response()->json([
+                'msg' => 'No autorizado',
+                'status' => false,
+            ], 403);
+        }
+
+        return parent::render($request, $exception);
     }
 }

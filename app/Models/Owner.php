@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Owner extends Model
 {
     use HasFactory;
+
     protected $fillable = ['person_id'];
+
+    protected $hidden = ['created_at', 'updated_at'];
 
     //relacion uno a muchos
     public function vehicles()
