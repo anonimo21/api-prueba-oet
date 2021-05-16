@@ -49,7 +49,21 @@ class DriverController extends Controller
 
     public function show($id)
     {
-        //
+        // if (!$request->ajax()) {
+        //     return redirect('/');
+        // }
+        $driver = Driver::where('person_id', $id)->get();
+        $person = Person::find($id);
+
+        if (count($driver) > 0) { //si existe el driver buscamos la person correspondiente
+            if (is_object($person)) {
+                return response()->json(new DriverResource(Driver::where('person_id', $id)->with('person')->first()), 201);
+            } else {
+                return response()->json(['msg' => 'no exite el driver'], 404);
+            }
+        } else {
+            return response()->json(['msg' => 'no exite el driver'], 404);
+        }
     }
 
     public function update(StoreDriverRequest $request, $id)
@@ -67,7 +81,7 @@ class DriverController extends Controller
             } else {
                 return response()->json(['msg' => 'no exite el driver'], 404);
             }
-        }else{
+        } else {
             return response()->json(['msg' => 'no exite el driver'], 404);
         }
     }
@@ -88,7 +102,7 @@ class DriverController extends Controller
             } else {
                 return response()->json(['msg' => 'no exite el driver'], 404);
             }
-        }else{
+        } else {
             return response()->json(['msg' => 'no exite el driver'], 404);
         }
     }

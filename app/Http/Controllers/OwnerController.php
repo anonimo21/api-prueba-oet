@@ -48,7 +48,21 @@ class OwnerController extends Controller
 
     public function show($id)
     {
-        //
+        // if (!$request->ajax()) {
+        //     return redirect('/');
+        // }
+        $owner = Owner::where('person_id', $id)->get();
+        $person = Person::find($id);
+
+        if (count($owner) > 0) { //si existe el driver buscamos la person correspondiente
+            if (is_object($person)) {
+                return response()->json(new OwnerResource(Owner::where('person_id', $id)->with('person')->first()), 201);
+            } else {
+                return response()->json(['msg' => 'no exite el owner'], 404);
+            }
+        } else {
+            return response()->json(['msg' => 'no exite el owner'], 404);
+        }
     }
 
     public function update(StoreOwnerRequest $request, $id)
@@ -66,7 +80,7 @@ class OwnerController extends Controller
             } else {
                 return response()->json(['msg' => 'no exite el owner'], 404);
             }
-        }else{
+        } else {
             return response()->json(['msg' => 'no exite el owner'], 404);
         }
     }
@@ -87,7 +101,7 @@ class OwnerController extends Controller
             } else {
                 return response()->json(['msg' => 'no exite el owner'], 404);
             }
-        }else{
+        } else {
             return response()->json(['msg' => 'no exite el owner'], 404);
         }
     }

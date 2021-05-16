@@ -28,9 +28,12 @@ class VehicleController extends Controller
         return response()->json(new VehicleResource($vehicle), 201);
     }
 
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        //
+        // if (!$request->ajax()) {
+        //     return redirect('/');
+        // }
+        return response()->json(new VehicleResource($vehicle), 200);
     }
 
     public function update(StoreVehicleRequest $request, Vehicle $vehicle)
