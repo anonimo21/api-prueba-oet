@@ -11,7 +11,7 @@ class Owner extends JsonResource
         //return parent::toArray($request);
         return [
             'id' => $this->person_id,
-            'driver' => $this->person
+            'owner' => $this->person
         ];
     }
 }

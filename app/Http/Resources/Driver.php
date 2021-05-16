@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Driver as ModelsDriver;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Driver extends JsonResource
