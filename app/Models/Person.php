@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     use HasFactory;
+    
     protected $table = 'persons';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = ['cedula', 'primer_nombre', 'segundo_nombre', 'apellidos', 'direccion', 'telefono', 'ciudad'];
+
     protected $hidden = ['created_at', 'updated_at'];
 
     //relacion uno a uno
