@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'person_id';
     
     protected $fillable = ['person_id'];
 

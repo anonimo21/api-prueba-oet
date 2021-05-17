@@ -9,6 +9,8 @@ class Owner extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'person_id';
+
     protected $fillable = ['person_id'];
 
     protected $hidden = ['created_at', 'updated_at'];
