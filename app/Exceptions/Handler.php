@@ -67,12 +67,12 @@ class Handler extends ExceptionHandler
             ], 403);
         }
 
-        if ($exception instanceof QueryException) {
-            return response()->json([
-                'msg' => 'No se puede ejecutar la consulta',
-                'status' => false,
-            ], 403);
-        }
+        // if ($exception instanceof QueryException) {
+        //     return response()->json([
+        //         'msg' => 'No se puede ejecutar la consulta',
+        //         'status' => false,
+        //     ], 403);
+        // }
 
         return parent::render($request, $exception);
     }
