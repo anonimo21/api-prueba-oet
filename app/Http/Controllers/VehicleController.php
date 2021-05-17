@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVehicleRequest;
+use App\Http\Requests\UpdateVehicleRequest;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Http\Resources\Vehicle as VehicleResource;
@@ -36,7 +37,7 @@ class VehicleController extends Controller
         return response()->json(new VehicleResource($vehicle), 200);
     }
 
-    public function update(StoreVehicleRequest $request, Vehicle $vehicle)
+    public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
         // if (!$request->ajax()) {
         //     return redirect('/');

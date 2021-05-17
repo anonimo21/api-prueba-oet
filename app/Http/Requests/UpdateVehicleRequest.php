@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
-class StoreVehicleRequest extends FormRequest
+class UpdateVehicleRequest extends FormRequest
 {
     public function authorize()
     {
@@ -15,11 +15,11 @@ class StoreVehicleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'placa' => 'required|unique:vehicles',
+            'placa' => 'required',
             'color' => 'required',
             'marca' => 'required',
             'type_id' => 'required',
-            'driver_id' => 'required|unique:vehicles',
+            'driver_id' => 'required',
             'owner_id' => 'required',
         ];
         return $rules;

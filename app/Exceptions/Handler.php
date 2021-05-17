@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Database\QueryException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -62,6 +63,13 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AuthorizationException) {
             return response()->json([
                 'msg' => 'No autorizado',
+                'status' => false,
+            ], 403);
+        }
+
+        if ($exception instanceof QueryException) {
+            return response()->json([
+                'msg' => 'No se puede ejecutar la consulta',
                 'status' => false,
             ], 403);
         }
